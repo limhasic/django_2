@@ -1,15 +1,16 @@
 from django.shortcuts import render, redirect
 from .models import Todo
+from .forms import TodoForm
 # Create your views here.
 
 # 1 전체 조회
 def todo_list(request):
-    todos = Todo.objects.filter(complete=True)
+    todos = Todo.objects.filter(complete=False)
     return render(request, 'todo/todo_list.html', {'todos':todos})
 
 # 2 상세 조회
 def todo_detail(request, pk):
-    todo = Todo.objects.get(id=pk)
+    todo = Todo.objects.get(id = pk)
     return render(request, 'todo/todo_detail.html' , {'todo':todo})
 
 def todo_post(request):
@@ -25,7 +26,7 @@ def todo_post(request):
 
 
 def todo_edit(request, pk):
-    todo = Todo.objects.get(id=pk)
+    todo = Todo.objects.get(id= pk)
     if request.method == "POST":
         form = TodoForm(request.POST, instance=todo)
         if form.is_valid():
@@ -38,12 +39,11 @@ def todo_edit(request, pk):
 
 
 def todo_done(request, pk):
-    todo = Todo.objects.get(id=pk)
-    todo.completed = True
+    todo = Todo.objects.get(id = pk)
+    todo.complete = True
     todo.save()
     return redirect('todo_list')
 
-
 def todo_done_list(request):
-    dones = Todo.objects.filter(completed=True)
-    return render(request, 'todo/todo_done_lilst.html', {'dones': dones})
+    dones = Todo.objects.filter(complete=True)
+    return render(request, 'todo/todo_done_list.html', {'dones': dones})
