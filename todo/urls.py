@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('', views.todo_list, name='todo_list'),
 
@@ -14,4 +17,8 @@ urlpatterns = [
     path('done/', views.todo_done_list, name='todo_done_list'),
     path('done/<int:pk>', views.todo_done, name='todo_done'),
 
-]
+
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+# 스태틱 파일을 서빙할 수 있는 경로 지정, -> MEDIA_URL ->
+# static
+# 서빙

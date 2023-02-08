@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Todo
 from .forms import TodoForm
+#from django.http import HttpResponse
+#from django.shortcuts import render
+#from .forms import UploadFileForm
+#from .forms import DocumentForm
+
 # Create your views here.
 
 # 1 전체 조회
@@ -15,7 +20,7 @@ def todo_detail(request, pk):
 
 def todo_post(request):
     if request.method == "POST":
-        form = TodoForm(request.POST)
+        form = TodoForm(request.POST )
         if form.is_valid():
             todo = form.save(commit=False)
             todo.save()
@@ -47,3 +52,6 @@ def todo_done(request, pk):
 def todo_done_list(request):
     dones = Todo.objects.filter(complete=True)
     return render(request, 'todo/todo_done_list.html', {'dones': dones})
+
+def upload_file(request):
+    pass
