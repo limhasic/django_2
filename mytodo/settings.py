@@ -24,8 +24,8 @@ SECRET_KEY = 'django-insecure-0h$sjqt&k&p(+^&ejfmkfx4&m^jpdjpi^yy)1(c#p_hy2idh+!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [*]
-
+ALLOWED_HOSTS = ['*']
+# ???
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # /media 경로로 들어갈 경우, BASE_DIR = manage.py 가 존재하는 폴더에서 media라는 파일을 꺼내주겠다.
